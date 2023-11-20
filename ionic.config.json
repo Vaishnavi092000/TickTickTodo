@@ -1,0 +1,7 @@
+{
+  "name": "TickTick",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
