@@ -1,0 +1,31 @@
+.bottomNavBar {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    opacity: 1;
+    background: #ffffff;
+  }
+  
+  a {
+    opacity: 1;
+  }
+  
+  a.col-md-3.mat-icon-button.mat-tab-label-active {
+    color: #057ffa;
+    opacity: 1;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #057ffa;
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  a.mdc-icon-button.active .mat-icon{
+    color: #057ffa;
+    opacity: 1;
+    text-decoration: none;
+  }
+  
+  td{
+    text-align: center;
+  }

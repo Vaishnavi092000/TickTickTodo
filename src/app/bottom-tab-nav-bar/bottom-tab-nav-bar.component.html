@@ -1,0 +1,80 @@
+<!-- <nav mat-tab-nav-bar class="bottomNavBar"> 
+  <a
+    mat-tab-link
+    routerLink="dash"
+    (click)="showTasks()"
+    [active]="showTask"
+    class="col-md-3"
+  >
+    <mat-icon>check_box</mat-icon>
+  </a>
+  <a
+    mat-tab-link
+    (click)="showCalandars()"
+    [active]="showCalandar"
+    routerLink="dash"
+    class="col-md-3"
+  >
+    <fa-layers>
+      <fa-icon [icon]="fasCalendar"></fa-icon>
+
+      <fa-layers-text
+        content="{{ componentDate > 9 ? componentDate : componentDate }}"
+        size="2x"
+        transform="down-4"
+      ></fa-layers-text>
+    </fa-layers>
+
+    <mat-icon>calendar_today</mat-icon>
+  </a>
+  <a
+    mat-tab-link
+    (click)="searchText()"
+    [active]="search"
+    routerLink="dash"
+    
+    class="col-md-3"
+  >
+    <mat-icon>search</mat-icon>
+  </a>
+
+  <a
+    mat-tab-link
+    (click)="showProfile()"
+    [active]="profile"
+    routerLink="dash"
+    class="col-md-3"
+  >
+    <mat-icon>person</mat-icon>
+  </a>
+</nav> -->
+
+
+<mat-toolbar class="bottomNavBar row col-md-12">
+
+  <table width="100%">
+    <tr>
+      <td><a mat-icon-button [ngClass]="showTask ? 'active' : ''" routerLink="today" (click)="showTasks()">
+          <mat-icon>check_box</mat-icon>
+      </a></td>
+
+      <td>
+        <a mat-icon-button [ngClass]="showCalandar ? 'active' : ''" routerLink="calendar" (click)="showCalandars()">
+          <mat-icon>calendar_today</mat-icon>
+        </a>
+      </td>
+
+      <td>
+        <a mat-icon-button [ngClass]="search ? 'active' : ''" routerLink="search" (click)="searchText()">
+          <mat-icon>search</mat-icon>
+        </a>
+      </td>
+
+      <td>
+        <a mat-icon-button [ngClass]="profile ? 'active' : ''" routerLink="profile" (click)="showProfile()">
+          <mat-icon>person</mat-icon>
+        </a>
+      </td>
+    </tr>
+  </table>
+</mat-toolbar>

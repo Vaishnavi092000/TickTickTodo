@@ -1,0 +1,7 @@
+{
+  "name": "TickTickApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

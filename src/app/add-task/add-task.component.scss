@@ -1,0 +1,60 @@
+.addBtn {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    background-color: #057ffa !important;
+}
+
+.mat-button {
+    background: none !important;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+.form-control {
+    border: none !important;
+    border-bottom: 1px solid #80bdff !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.form-control:focus {
+    border: none !important;
+    border-bottom: 1px solid #80bdff !important;
+    box-shadow: none !important;
+}
+
+.add-task-container {
+    padding: 10px;
+}
+
+.addTaskBtn {
+    background-color: #057ffa !important;
+    color: #f5f5f7 !important;
+    opacity: 1;
+}
+
+form {
+    text-align: center;
+}
+
+.bottomSheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s ease-in-out;
+}
+
+
+.bottomSheet.open {
+    max-height: 250px;
+    height: 100%;
+    padding: 10px;
+}

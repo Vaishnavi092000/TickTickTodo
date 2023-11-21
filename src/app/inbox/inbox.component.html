@@ -1,0 +1,30 @@
+<!-- <div class="container">
+  <div class="panel-group" id="accordion" >
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}">
+          {{ todo.name }}
+        </a>
+      </div>
+      <div id="collapse{{i}}" class="panel-collapse collapse">
+        <div class="panel-body">{{ todo.description }}</div>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+<mat-accordion *ngIf="Todos">
+  <mat-expansion-panel *ngFor="let todo of Todos; index as i">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ todo.name }}
+      </mat-panel-title>
+      <!-- <mat-panel-description>
+        Type your name and age
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    {{ todo.description }}
+  </mat-expansion-panel>
+</mat-accordion>

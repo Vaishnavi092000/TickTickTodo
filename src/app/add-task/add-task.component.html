@@ -1,0 +1,21 @@
+<button mat-mini-fab class="addBtn" (click)="toggleBottomSheet()" #AddTask>
+  <mat-icon aria-label="Example icon-button with a add icon">add</mat-icon>
+</button>
+
+
+<div class="bottomSheet" ngClass="{{showForm ? 'open' : ''}}" #bottomSheet>
+  <div class="add-task-container">
+    <form class="add-task-container" name="taskForm">
+        <div class="form-group">
+            <input type="text" class="form-control" id="taskName" #taskName placeholder="What would you like to do?" />
+        </div>
+  
+        <div class="form-group">
+            <input type="text" class="form-control" id="taskDesc" #taskDesc placeholder="Description" />
+        </div>
+  
+        <button type="button" class="btn addTaskBtn" type="submit" (click)="Create(taskName, taskDesc)">Add Task</button>
+    </form>
+  </div>
+</div>
+
