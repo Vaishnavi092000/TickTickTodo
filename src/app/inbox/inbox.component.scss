@@ -1,3 +1,46 @@
 .panel-heading{
     background-color: #fff;
 }
+
+mat-panel-title{
+    flex-grow: unset !important;
+    flex-basis: 65%;
+}
+
+mat-panel-description{
+    flex-grow: unset !important;
+    flex-basis: 35%;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+mat-panel-description mat-icon{
+    display: flex;
+    flex-basis: 50%;
+    float: left;
+}
+
+.mat-mdc-card{
+    margin: 10px 0!important;
+}
+
+.mdc-card{
+    display: block !important;
+}
+
+.todoDate{
+    color: #057ffa;
+    text-align: right;
+}
+
+.mat-mdc-checkbox.mat-primary{
+    --mdc-checkbox-selected-focus-icon-color: #057ffa !important;
+    --mdc-checkbox-selected-hover-icon-color:#057ffa !important;
+    --mdc-checkbox-selected-pressed-icon-color : #057ffa !important;
+    --mdc-checkbox-selected-icon-color: #057ffa !important;
+  }

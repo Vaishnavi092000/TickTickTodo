@@ -2,22 +2,28 @@ import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, View
 import { TodoCrudService } from '../todo-crud.service';
 import { todo } from '../todo';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
+  providers : [DatePipe]
 })
 export class AddTaskComponent  implements OnInit {
 
-  constructor(private elementRef: ElementRef, private todoServ :TodoCrudService) {}
+  constructor(private elementRef: ElementRef, private todoServ :TodoCrudService, private datePipe: DatePipe) {}
 
+  today = new Date();
   showForm = false;
 
   firestore: AngularFirestore = inject(AngularFirestore);
   
   @ViewChild('bottomSheet') bottomSheet : ElementRef | undefined;
   @ViewChild('AddTask') AddTask : ElementRef | undefined;
+
+  formattedDate = this.datePipe.transform(this.today, 'MMM d');
 
   ngOnInit() {
   }
@@ -36,13 +42,10 @@ export class AddTaskComponent  implements OnInit {
   }
 
   Create(a: any,b: any) {
-    console.log('Name', a.value);
-    console.log('Desc', b.value); 
-
     let newTodo: todo = {
       name : a.value,
       description : b.value,
-      date : new Date(),
+      date : this.formattedDate,
       complete : false
     };  
 

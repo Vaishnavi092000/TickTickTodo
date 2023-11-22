@@ -1,7 +1,8 @@
 .addBtn {
     position: fixed;
-    bottom: 80px;
-    right: 30px;
+    bottom: 10%;
+    right: 10%;
+    z-index: 99;
     background-color: #057ffa !important;
 }
 
@@ -57,4 +58,5 @@ form {
     max-height: 250px;
     height: 100%;
     padding: 10px;
+    z-index: 99;
 }

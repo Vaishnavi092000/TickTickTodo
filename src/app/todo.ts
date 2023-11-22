@@ -1,8 +1,7 @@
-import { Time } from "@angular/common";
-
 export interface todo{
+    id ?: String,
     name : 'String',
     description : 'String',
-    date : Date,
+    date : any,
     complete : boolean
 }
