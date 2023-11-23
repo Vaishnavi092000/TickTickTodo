@@ -1,63 +1,64 @@
 <div fxLayout="column" fxFlexFill>
-  <mat-toolbar
-    class="p-0"
-    fxLayout="row"
-    fxLayoutAlign="start stretch"
-    style="z-index: 2"
-  >
-    <button mat-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+  <mat-toolbar class="p-0" fxLayout="row" fxLayoutAlign="start stretch" style="z-index: 2">
+    <table width="100%">
+      <tr class="col-md-12">
+        <td class="col-md-2">
+          <button mat-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </td>
 
-    <div
-      fxLayout="row"
-      fxLayoutAlign="start center"
-      fxLayoutGap="15px"
-      class="pl-3"
-    >
-      <span>Tick Tick</span>
-    </div>
+        <td class="col-md-9">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3 col-md-8">
+            <span>Tick Tick</span>
+          </div>
+        </td>
 
-    <span fxFlex></span>
+        <td class="col-md-1 txt-right">
+          <span>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
+              </button>
+            </mat-menu>
+          </span>
+        </td>
+      </tr>
+    </table>
   </mat-toolbar>
 
   <mat-drawer-container fxFlex autosize>
     <mat-drawer #drawer>
       <div fxLayout="column">
-        <button
-          mat-button
-          routerLink="today"
-          fxLayoutAlign="start"
-          class="py-2 sideNavBtn"
-        >
+        <button mat-button routerLink="today" fxLayoutAlign="start" class="py-2 sideNavBtn">
           <span class="col-md-4 pl0"><mat-icon>today</mat-icon></span>
           <span class="col-md-4">Today</span>
-          <span class="col-md-4 txt-right pr0">1</span>
+          <span class="col-md-4 txt-right pr0">{{ todayCount }}</span>
         </button>
 
         <mat-divider></mat-divider>
 
-        <button
-          mat-button
-          routerLink="inbox"
-          fxLayoutAlign="start"
-          class="py-2 sideNavBtn"
-        >
+        <button mat-button routerLink="inbox" fxLayoutAlign="start" class="py-2 sideNavBtn">
           <span class="col-md-4 pl0"><mat-icon>inbox</mat-icon></span>
           <span class="col-md-4">Inbox</span>
           <span class="col-md-4 txt-right pr0">{{ inboxTodo.length }}</span>
         </button>
         <mat-divider></mat-divider>
 
-        <button
-          mat-button
-          routerLink="welcome"
-          fxLayoutAlign="start"
-          class="py-2 sideNavBtn"
-        >
-          <span class="col-md-4 pl0"
-            ><mat-icon> sentiment_satisfied_alt</mat-icon></span
-          >
+        <button mat-button routerLink="welcome" fxLayoutAlign="start" class="py-2 sideNavBtn">
+          <span class="col-md-4 pl0"><mat-icon> sentiment_satisfied_alt</mat-icon></span>
           <span class="col-md-8">Welcome</span>
         </button>
         <mat-divider></mat-divider>
@@ -69,13 +70,11 @@
 
     <!--PAGES-->
     <div>
-      <router-outlet></router-outlet> 
+      <router-outlet></router-outlet>
     </div>
 
     <!--Bottom Navigation-->
-    <app-bottom-tab-nav-bar
-      style="position:fixed; bottom:0; left:0; width:100% "
-    ></app-bottom-tab-nav-bar>
+    <app-bottom-tab-nav-bar style="position:fixed; bottom:0; left:0; width:100% "></app-bottom-tab-nav-bar>
 
   </mat-drawer-container>
 </div>

@@ -38,6 +38,10 @@ body {
 
 .mat-drawer-container {
   background-image: linear-gradient(to bottom, #f1f2f3 0%, #f2f2f2);
+  position:unset !important;
+  overflow: auto !important;
+  height: 96vh !important;
+  padding-bottom: 20% !important;
 }
 
 .mat-drawer-content::-webkit-scrollbar {
@@ -82,7 +86,6 @@ body {
   text-align: left;
 }
 
-
-.mat-drawer-container{
-  position:unset !important;
+.txt-center {
+  text-align: center;
 }

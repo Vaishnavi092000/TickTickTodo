@@ -1,3 +1,78 @@
-<p>
-  today works!
-</p>
+<div>
+  <mat-accordion *ngIf="Todos">
+    
+      <div [ngClass]="todayTodos.length ? 'show' : 'hide' ">
+        
+        <mat-card *ngFor="let todo of todayTodos; index as i">
+          <table width="100%" class="table">
+          <tr class="row col-md-12">
+            <td class="col-md-1">
+              <mat-checkbox color="primary" (change)="toggleComplete(todo)"></mat-checkbox>
+              </td>
+            <td class="col-md-7 txt-left" (click)="openTaskDetails(todo)"><mat-card-content>{{ todo.name }}</mat-card-content></td>
+            <td class="col-md-4 todoDate">{{ todo.date }}</td>
+          </tr>
+        </table>
+
+        
+        </mat-card>
+
+        
+        
+      </div>
+
+      <div [ngClass]="todayTodos.length ? 'hide' : 'show' " class="txt-center showImg">
+        <img src="../../assets/images/Add tasks-pana.svg" width="60%"/>
+      </div>
+
+      <div class="bottomSheet" ngClass="{{showDetails ? 'open' : ''}}" #bottomSheet>
+        <div class="show-details-container">
+          <div class="col-md-12">
+            <table width="100%">
+              <tr>
+                <td class="col-md-1 txt-left">
+                  <mat-icon (click)="showDetails = false">expand_more</mat-icon>
+                </td>
+                <td class="col-md-10 txt-center">
+                  <h2>Today</h2>
+                </td>
+                <td class="col-md-1 txt-right">
+                  <table width="100%">
+                    <tr>
+                      <td><mat-icon (click)="isEditable=true">edit</mat-icon></td>
+                      <td><mat-icon (click)="deleteTodo(currentTodo)">delete</mat-icon></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="container" *ngIf="!isEditable">
+            <p class="col-md-12 mb-10" style="color: #057ffa;">{{ currentTodo.date }}</p>
+            <div class="col-md-12">
+              <h2>{{ currentTodo.name }}</h2>
+              <p class="text-muted">{{ currentTodo.description }}</p>
+            </div>
+          </div>
+
+          <div *ngIf="isEditable">
+            <div class="add-task-container">
+              <form class="add-task-container" name="taskForm">
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="taskName" #taskName value="{{currentTodo.name}}" />
+                  </div>
+            
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="taskDesc" #taskDesc value="{{currentTodo.description}}" />
+                  </div>
+            
+                  <button type="button" class="btn addTaskBtn" type="submit" (click)="editTodo(taskName, taskDesc)">Update Task</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </mat-accordion>
+</div>
+

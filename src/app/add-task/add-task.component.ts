@@ -42,6 +42,7 @@ export class AddTaskComponent  implements OnInit {
   }
 
   Create(a: any,b: any) {
+    this.showForm= false;
     let newTodo: todo = {
       name : a.value,
       description : b.value,

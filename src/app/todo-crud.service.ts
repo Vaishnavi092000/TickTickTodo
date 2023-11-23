@@ -33,8 +33,8 @@ export class TodoCrudService {
    return this.firestore.collection('/Todo').snapshotChanges();
   }
 
-  editTodo(obj : todo){
-    this.deleteTodo(obj);
+  editTodo(objDEl : todo, obj : todo){
+    this.deleteTodo(objDEl);
     this.createTodo(obj);
   }
 

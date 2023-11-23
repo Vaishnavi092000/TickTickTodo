@@ -1,0 +1,63 @@
+.bottomSheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s ease-in-out;
+}
+
+.bottomSheet.open {
+    max-height: 250px;
+    height: 100%;
+    padding: 10px;
+    z-index: 99;
+}
+
+.mat-mdc-card{
+    margin: 10px 0!important;
+}
+
+.mdc-card{
+    display: block !important;
+}
+
+.form-control {
+    border: none !important;
+    border-bottom: 1px solid #80bdff !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.form-control:focus {
+    border: none !important;
+    border-bottom: 1px solid #80bdff !important;
+    box-shadow: none !important;
+}
+
+.add-task-container {
+    padding: 10px;
+}
+
+.addTaskBtn {
+    background-color: #057ffa !important;
+    color: #f5f5f7 !important;
+    opacity: 1;
+}
+
+form {
+    text-align: center;
+}
+
+.showImg{
+    display: flex !important;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    height: 90vh;
+}

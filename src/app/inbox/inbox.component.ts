@@ -1,4 +1,4 @@
-import { Component,OnInit, inject } from '@angular/core';
+import { Component,ElementRef,HostListener,OnInit, ViewChild, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TodoCrudService } from '../todo-crud.service';
 import { todo } from '../todo';
@@ -11,14 +11,30 @@ import { todo } from '../todo';
 export class InboxComponent implements OnInit {
 
   Todos:any=[];
-  
+  showDetails : boolean = false;
   completeTodos:any=[];
   inboxTodo : any = [];
+  isEditable : boolean = false;
 
-  constructor(private todoServ: TodoCrudService) { }
+  currentTodo : todo = {
+    name: 'String',
+    description: 'String',
+    date: undefined,
+    complete: false
+  };
+
+  constructor(private todoServ: TodoCrudService, private elementRef: ElementRef) { }
 
   firestore: AngularFirestore = inject(AngularFirestore);
 
+  @ViewChild('bottomSheet') bottomSheet : ElementRef | undefined;
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event): void {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.showDetails = false;
+    }
+  }
 
   ngOnInit() {
     this.getTodo();
@@ -36,12 +52,25 @@ export class InboxComponent implements OnInit {
     })
   }
 
-  deleteTodo(){
+  deleteTodo(obj : todo){
     console.log('inside delete');
+    this.todoServ.deleteTodo(obj);
+    this.showDetails = false;
   }
 
-  editTodo(){
-    console.log('inside edit');
+  editTodo(a:any, b:any){
+    let newTodo: todo = {
+      name : a.value,
+      description : b.value,
+      date : this.currentTodo.date,
+      complete : this.currentTodo.complete
+    };  
+
+    console.log('newtodo for editing', newTodo);
+
+    this.todoServ.editTodo(this.currentTodo, newTodo);
+
+    this.showDetails = false;
   }
 
   refreshTodos(){
@@ -50,7 +79,6 @@ export class InboxComponent implements OnInit {
     this.inboxTodo = [];
 
     for(let t of this.Todos){
-      console.log(t);
       if(t.complete){
         this.completeTodos.push(t);
       }
@@ -63,9 +91,17 @@ export class InboxComponent implements OnInit {
   }
 
   toggleComplete(obj:todo){
-    obj.complete = !obj.complete;
+    setTimeout(() => {
+      obj.complete = !obj.complete;
     console.log('Toggle ', obj);
-    this.todoServ.editTodo(obj);
+    this.todoServ.editTodo(obj, obj);
     this.refreshTodos();
+    }, 300);
+  }
+
+  openTaskDetails(obj : todo){
+    console.log('open details', obj);
+    this.currentTodo = obj;
+    this.showDetails = !this.showDetails;
   }
 }
