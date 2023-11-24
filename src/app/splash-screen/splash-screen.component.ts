@@ -16,7 +16,6 @@ export class SplashScreenComponent  implements OnInit {
     // setTimeout(() => {
     //   this.router.navigateByUrl('/dash');
     // }, 5000);
-
     this.router.navigateByUrl('/register');
   }
 

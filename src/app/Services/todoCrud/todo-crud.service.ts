@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { todo } from './todo';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { todo } from 'src/app/todo';
 
 
 @Injectable({

@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { TodoCrudService } from '../todo-crud.service';
 import { todo } from '../todo';
+import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
 @Component({
   selector: 'app-add-task-bottom-sheet',
@@ -20,37 +20,7 @@ export class AddTaskBottomSheetComponent {
   } 
     
   Create() {
-    //a: any,b: any
-    //console.log('Name', a.value);
-    //console.log('Desc', b.value);
-
-    // const col2 = this.firestore.collection('/Todo').add
-    //   (
-    //     {  
-    //       'name':"book2",
-    //       'description' : "test desc",
-    //       'date': "demo date3",
-    //       'complete' : true,  
-    //     }
-    //   ); 
-    
-
-    // let newTodo: todo = {
-    //   name : a.value,
-    //   description : b.value,
-    //   date : "String",
-    //   complete : false
-    // };
-    // console.log('newTodo from addtask', newTodo);
-    //return false;
-  
-
-   //this.todoServ.createTodo();
   }
 
-  // openLink(event: MouseEvent): void {
-  //   this.bottomSheetRef.dismiss();
-  //   event.preventDefault();
-  // }
 
 }

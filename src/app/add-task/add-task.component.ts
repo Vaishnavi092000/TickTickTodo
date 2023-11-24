@@ -1,8 +1,8 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild, inject } from '@angular/core';
-import { TodoCrudService } from '../todo-crud.service';
 import { todo } from '../todo';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
+import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
 
 @Component({

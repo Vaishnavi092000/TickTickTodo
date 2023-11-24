@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,11 @@ export class RegisterComponent  implements OnInit {
 
   registerUser!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    public fireAuth : FirebaseAuthenticationService,
+    private router : Router
+  ) { }
 
   ngOnInit() {
     this.registerUser = this.formBuilder.group(
@@ -20,16 +26,14 @@ export class RegisterComponent  implements OnInit {
         userPhone: ['', Validators.required],
         userPass : ['', Validators.required],
         userconfPass : ['', Validators.required]
-      },
-  
+      },  
     );
   }
 
   Register(){
-    console.log('Form : ', this.registerUser.value);
-    let user = {};
-    user = this.registerUser.value;
-    console.log('user', user);
+    let user = this.registerUser.value;
+    this.fireAuth.signup(user.userEmail, user.userPass, user);
+    this.router.navigateByUrl('/login');
   }
 
 }

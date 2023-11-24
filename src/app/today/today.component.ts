@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoCrudService } from '../todo-crud.service';
 import { DatePipe } from '@angular/common';
 import { todo } from '../todo';
+import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
 @Component({
   selector: 'app-today',
@@ -27,7 +27,6 @@ export class TodayComponent implements OnInit {
     complete: false
   };
 
-
   ngOnInit() {
     this.getTodo();
   }
@@ -39,7 +38,6 @@ export class TodayComponent implements OnInit {
         data.id = e.payload.doc.id;
         return data;
       });
-
       this.refreshTodos();
     })
   }
@@ -48,7 +46,8 @@ export class TodayComponent implements OnInit {
     this.inboxTodo = [];
     this.todayTodos= [];
 
-    for (let t of this.Todos) {
+    for (let t of this.Todos) 
+    {
       if (t.complete) {
         this.completeTodos.push(t);
       }
@@ -74,11 +73,7 @@ export class TodayComponent implements OnInit {
       date : this.currentTodo.date,
       complete : this.currentTodo.complete
     };  
-
-    console.log('newtodo for editing', newTodo);
-
     this.todoServ.editTodo(this.currentTodo, newTodo);
-
     this.showDetails = false;
   }
 

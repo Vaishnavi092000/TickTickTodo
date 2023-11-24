@@ -16,10 +16,6 @@ export class ProfileComponent  implements OnInit {
   firestore: AngularFirestore = inject(AngularFirestore);
 
   ngOnInit() {
-    this.firestore.collection('/Users').add({
-      name : 'Veda'
-    });
-    console.log('created');
   }
 
 }

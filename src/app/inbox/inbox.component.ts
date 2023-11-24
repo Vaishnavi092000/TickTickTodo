@@ -1,7 +1,7 @@
 import { Component,ElementRef,HostListener,OnInit, ViewChild, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { TodoCrudService } from '../todo-crud.service';
 import { todo } from '../todo';
+import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
 @Component({
   selector: 'app-inbox',
@@ -53,7 +53,6 @@ export class InboxComponent implements OnInit {
   }
 
   deleteTodo(obj : todo){
-    console.log('inside delete');
     this.todoServ.deleteTodo(obj);
     this.showDetails = false;
   }
@@ -66,15 +65,11 @@ export class InboxComponent implements OnInit {
       complete : this.currentTodo.complete
     };  
 
-    console.log('newtodo for editing', newTodo);
-
     this.todoServ.editTodo(this.currentTodo, newTodo);
-
     this.showDetails = false;
   }
 
   refreshTodos(){
-    console.log('inside refresh');
     this.completeTodos = [];
     this.inboxTodo = [];
 
@@ -86,21 +81,17 @@ export class InboxComponent implements OnInit {
         this.inboxTodo.push(t);
       }
     }
-
-    console.log('completed', this.completeTodos);
   }
 
   toggleComplete(obj:todo){
     setTimeout(() => {
       obj.complete = !obj.complete;
-    console.log('Toggle ', obj);
     this.todoServ.editTodo(obj, obj);
     this.refreshTodos();
     }, 300);
   }
 
   openTaskDetails(obj : todo){
-    console.log('open details', obj);
     this.currentTodo = obj;
     this.showDetails = !this.showDetails;
   }

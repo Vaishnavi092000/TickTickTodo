@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { TodoCrudService } from '../todo-crud.service';
 import { DatePipe } from '@angular/common';
+import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
 
 @Component({
@@ -54,15 +54,11 @@ export class NavbarComponent  implements OnInit {
         this.completeTodos.push(t);
       }
       else{
-       let formattedDate : any = this.datePipe.transform(this.today, 'MMM d');
-        console.log('date', t.date.toString());
-        console.log('today', formattedDate.toString());
-        
+       let formattedDate : any = this.datePipe.transform(this.today, 'MMM d');        
         let a = formattedDate.toString();
         let b = t.date.toString();
         if(a == b){
           this.todayCount++;
-          console.log('done');
         }
 
         this.inboxTodo.push(t);
