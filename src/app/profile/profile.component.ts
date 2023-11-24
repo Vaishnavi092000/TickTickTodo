@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/firestore';
+import { async } from 'rxjs';
+
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +13,16 @@ export class ProfileComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  firestore: AngularFirestore = inject(AngularFirestore);
+
+  ngOnInit() {
+    this.firestore.collection('/Users').add({
+      name : 'Veda'
+    });
+    console.log('created');
+  }
 
 }
+
+
+

@@ -8,10 +8,14 @@ import { SearchComponent } from './search/search.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { InboxComponent } from './inbox/inbox.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/splash', pathMatch: 'full' },
   { path: 'splash', component: SplashScreenComponent },
+  { path : 'register', component : RegisterComponent },
+  { path : 'login', component : LoginComponent },
   { path: 'nav', component: NavbarComponent, 
     children:[
       { path: 'today', component: TodayComponent },

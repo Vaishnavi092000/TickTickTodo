@@ -23,7 +23,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     CalendarComponent,
     ProfileComponent,
     SearchComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, 

@@ -1,0 +1,45 @@
+<div class="registerContiner">
+  <div class="card">
+    <div class="add-task-container">
+      <h2 class="txt-center">Sign Up</h2>
+      <br>
+      <div>
+        <form class="add-task-container" name="registerUser" [formGroup]="registerUser" (ngSubmit)="Register()">
+  
+          <div class="form-group">
+            <input type="text" class="form-control" id="userName" formControlName="userName"
+              placeholder="Your good name please" />
+          </div>
+  
+          <div class="form-group">
+            <input type="text" class="form-control" id="userEmail" formControlName="userEmail"
+              placeholder="Email address" />
+          </div>
+  
+          <div class="form-group">
+            <input type="text" class="form-control" id="userPhone" formControlName="userPhone"
+              placeholder="Phone Number" />
+          </div>
+  
+          <div class="form-group">
+            <input type="text" class="form-control" id="userPass" formControlName="userPass" placeholder="Password" />
+          </div>
+  
+          <div class="form-group">
+            <input type="text" class="form-control" id="userconfPass" formControlName="userconfPass"
+              placeholder="Confirm Password" />
+          </div>
+  
+          <button type="button" class="btn addTaskBtn" type="submit">Create Account</button>
+        </form>
+      </div>
+    </div>
+    <div class="txt-center" style="padding: 10px;">
+      <button class="btn"><img src="../../assets/images/Google logo.png" width="24px" /> Sign up with Google</button>
+    </div>
+
+    <div class="txt-center" style="padding: 10px;">
+      <p>Already have an account? <a routerLink="/login" class="signupLink">Signin Now</a></p>
+    </div>
+  </div>
+</div>

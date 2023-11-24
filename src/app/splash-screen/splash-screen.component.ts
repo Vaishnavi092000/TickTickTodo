@@ -17,7 +17,7 @@ export class SplashScreenComponent  implements OnInit {
     //   this.router.navigateByUrl('/dash');
     // }, 5000);
 
-    this.router.navigateByUrl('/nav');
+    this.router.navigateByUrl('/register');
   }
 
 }
