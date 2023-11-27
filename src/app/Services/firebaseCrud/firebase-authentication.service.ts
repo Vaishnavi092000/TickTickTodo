@@ -38,8 +38,15 @@ export class FirebaseAuthenticationService {
             'email': localU.userEmail,
             'phone': localU.userPhone,
             'password': localU.userPass,
-            'isActive': false
+            'isActive': false,
+            'todoCollection' : 'Todos'+resp.user?.uid
           })
+
+          let todoCollectionName = 'Todos'+resp.user?.uid;
+          todoCollectionName.concat
+          console.log(todoCollectionName);
+
+          this.firestore.collection('/'+todoCollectionName).add({});
         }
       )
   }
