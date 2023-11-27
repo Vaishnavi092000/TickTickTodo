@@ -1,0 +1,52 @@
+.mat-mdc-card {
+    margin: 10px 0 !important;
+}
+
+.table{
+    margin-bottom: 0px !important;
+}
+
+.blueColor{
+    color : #057ffa;
+}
+
+mat-icon{
+    color: #057ffa;
+}
+
+table.userDetailsTable{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1{
+    margin: unset;
+}
+
+.userDetailsTable td{
+    padding: 10px;
+}
+
+.userDetailsTable td p{
+
+        margin: revert;
+}
+
+.userDetailsTable tr{
+    padding: 10px 0 !important;
+}
+
+.pd20{
+    padding: 20px 0;
+}
+
+.bottomBorder{
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.logoutBtn {
+    background-color: #057ffa !important;
+    color: #f5f5f7 !important;
+    opacity: 1;
+}

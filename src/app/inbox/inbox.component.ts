@@ -48,6 +48,8 @@ export class InboxComponent implements OnInit {
         return data;
       }); 
 
+      //console.log('type of todos', typeof(this.Todos));
+
       this.refreshTodos();
     })
   }

@@ -10,12 +10,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/splash', pathMatch: 'full' },
   { path: 'splash', component: SplashScreenComponent },
   { path : 'register', component : RegisterComponent },
   { path : 'login', component : LoginComponent },
+  
   { path: 'nav', component: NavbarComponent, 
     children:[
       { path: 'today', component: TodayComponent },
@@ -23,7 +25,8 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'calendar', component: CalendarComponent },
       { path: 'welcome', component: WelcomeComponent },
-      { path: 'inbox', component: InboxComponent }
+      { path: 'inbox', component: InboxComponent },
+      { path : 'resetPass', component : ResetPasswordComponent }
     ] 
   },
 ];

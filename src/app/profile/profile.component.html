@@ -1,3 +1,84 @@
-<p>
-  profile works!
-</p>
+<div>
+  <mat-accordion>
+
+    <div [ngClass]="isLoggedIn ? 'show' : 'hide' ">
+
+      <mat-card>
+        <table width="100%" class="table">
+          <tr class="row col-md-12">
+            <td width="30%">
+              <img src="../../assets/images/logo.png" alt="">
+            </td>
+            <td width="70%">
+              <h1 class="blueColor" style="padding: 0 30px;">Hi {{ currentUser.name }}</h1>
+            </td>
+          </tr>
+        </table>
+      </mat-card>
+
+      <mat-card class="pd20">
+        <table width="60%" class="table userDetailsTable">
+
+          <tr class="row col-md-12">
+            <td colspan="2">
+              <h2 class="blueColor">User Details :</h2>
+            </td>
+          </tr>
+
+          <tr class="row col-md-12 bottomBorder">
+            <td width="30%">
+              <mat-icon>person</mat-icon>
+            </td>
+            <td width="70%">
+              <p>{{ currentUser.name }}</p>
+            </td>
+          </tr>
+
+          <tr class="row col-md-12 bottomBorder">
+            <td width="30%">
+              <mat-icon>phone_iphone</mat-icon>
+            </td>
+            <td width="70%">
+              <p>+91 {{ currentUser.phone }}</p>
+            </td>
+          </tr>
+
+          <tr class="row col-md-12 bottomBorder">
+            <td width="30%">
+              <mat-icon>mail</mat-icon>
+            </td>
+            <td width="70%">
+              <p>{{ currentUser.email }}</p>
+            </td>
+          </tr>
+
+          <tr class="row col-md-12">
+            <td width="30%">
+              <mat-icon>password</mat-icon>
+            </td>
+            <td width="70%">
+              <p>******
+                <span style="float: right;">
+                  <mat-icon [routerLink]="['/nav/resetPass']">lock_reset</mat-icon>
+                </span>
+              </p>
+            </td>
+          </tr>
+
+          <tr class="row col-md-12">
+            <td colspan="2" class="txt-center">
+              <button class="btn logoutBtn" (click)="logout()">Logout</button>
+            </td>
+          </tr>
+
+
+        </table>
+      </mat-card>
+
+    </div>
+
+    <div [ngClass]="isLoggedIn ? 'hide' : 'show' " class="txt-center">
+      <img src="../../assets/images/Add tasks-pana.svg" width="60%" />
+    </div>
+  </mat-accordion>
+</div>

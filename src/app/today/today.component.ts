@@ -90,7 +90,7 @@ export class TodayComponent implements OnInit {
   toggleComplete(obj:todo){
     setTimeout(() => {
       obj.complete = !obj.complete;
-    console.log('Toggle ', obj);
+    //console.log('Toggle ', obj);
     this.todoServ.editTodo(obj, obj);
     this.refreshTodos();
     }, 300);

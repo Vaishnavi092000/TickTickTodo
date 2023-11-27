@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserCrudService } from '../Services/userCrud/user-crud.service';
 
 @Component({
   selector: 'app-splash-screen',
@@ -8,15 +9,23 @@ import { Router } from '@angular/router';
 })
 export class SplashScreenComponent  implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usrCrud : UserCrudService) { }
+
+  currentUser: any = {};
 
   ngOnInit() {}
 
   redirect() {
-    // setTimeout(() => {
-    //   this.router.navigateByUrl('/dash');
-    // }, 5000);
-    this.router.navigateByUrl('/register');
+    this.currentUser = this.usrCrud.getCurrentUser();
+    //console.log('current user in profile', this.currentUser);
+
+    if(this.currentUser != undefined || this.currentUser != null)
+    {
+      this.router.navigateByUrl('/nav');
+    }
+    else {
+      this.router.navigateByUrl('/login');
+    }   
   }
 
 }

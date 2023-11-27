@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddTaskBottomSheetComponent } from './add-task-bottom-sheet.component';
+import { ResetPasswordComponent } from './reset-password.component';
 
-describe('AddTaskBottomSheetComponent', () => {
-  let component: AddTaskBottomSheetComponent;
-  let fixture: ComponentFixture<AddTaskBottomSheetComponent>;
+describe('ResetPasswordComponent', () => {
+  let component: ResetPasswordComponent;
+  let fixture: ComponentFixture<ResetPasswordComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddTaskBottomSheetComponent ],
+      declarations: [ ResetPasswordComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddTaskBottomSheetComponent);
+    fixture = TestBed.createComponent(ResetPasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

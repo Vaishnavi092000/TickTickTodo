@@ -15,7 +15,7 @@ export class TodoCrudService {
    }
 
   createTodo(newtodo:todo){
-    console.log('inside create');
+    //console.log('inside create');
     newtodo.id = this.firestore.createId();
     const col = this.firestore.collection('/Todo').add
     (

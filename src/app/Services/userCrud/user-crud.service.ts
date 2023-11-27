@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class UserCrudService {
 
   users : any = [];
-  currentuser : any = {};
+  currentUser : any = {};
 
   constructor() { }
 
@@ -20,4 +20,11 @@ export class UserCrudService {
     return this.firestore.collection('/Users').snapshotChanges();
   }
 
+  getCurrentUser(){
+    this.currentUser = localStorage.getItem('currentUser');
+    if(this.currentUser != null){
+      //console.log('Current User is ', JSON.parse(this.currentUser));
+      return JSON.parse(this.currentUser);
+    }    
+  }
 }
