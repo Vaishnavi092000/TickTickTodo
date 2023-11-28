@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, DocumentChangeAction } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserCrudService } from '../userCrud/user-crud.service';
 
 @Injectable({
@@ -43,8 +43,8 @@ export class FirebaseAuthenticationService {
           })
 
           let todoCollectionName = 'Todos'+resp.user?.uid;
-          todoCollectionName.concat
-          console.log(todoCollectionName);
+          //todoCollectionName.concat
+          //console.log(todoCollectionName);
 
           this.firestore.collection('/'+todoCollectionName).add({});
         }
@@ -69,14 +69,17 @@ export class FirebaseAuthenticationService {
 
   getUser(email: string, pass: string) 
   {
+    //console.log('inside getUser');
     this.userCrudServ.getAllUsers().subscribe
     (res => {
       res.map((e:any) => {
         const data = e.payload.doc.data();
         data.id = e.payload.doc.id;
         this.users.push(data);
+        //console.log('dta', data);
         if(data.email == email && data.password == pass)
         {
+          //console.log('data', data);
           this.currentuser = data;
           //console.log('Current User : ', this.currentuser);
           localStorage.setItem('currentUser', JSON.stringify(this.currentuser));

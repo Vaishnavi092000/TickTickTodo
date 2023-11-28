@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { todo } from 'src/app/todo';
+import { UserCrudService } from '../userCrud/user-crud.service';
 
 
 @Injectable({
@@ -10,14 +11,22 @@ import { todo } from 'src/app/todo';
 export class TodoCrudService {
 
   firestore: AngularFirestore = inject(AngularFirestore);
+  //JSON.parse
 
-  constructor() {
-   }
+  constructor(private userServ : UserCrudService) {}
+
+  currentUser = this.userServ.getCurrentUser();
+
+  
+
+  todoCollection = this.currentUser.todoCollection;
 
   createTodo(newtodo:todo){
     //console.log('inside create');
+    //console.log('current user in create todo', this.currentUser);
+    //console.log('collection name', this.todoCollection);
     newtodo.id = this.firestore.createId();
-    const col = this.firestore.collection('/Todo').add
+    const col = this.firestore.collection('/'+this.todoCollection).add
     (
       {
         'id' : newtodo.id,
@@ -30,7 +39,9 @@ export class TodoCrudService {
   }
 
   getAllTodo(){
-   return this.firestore.collection('/Todo').snapshotChanges();
+    //console.log('currentUser in getAll', this.currentUser);
+    //console.log('todo collection name in getAll', this.todoCollection);
+    return this.firestore.collection('/'+this.todoCollection).snapshotChanges();
   }
 
   editTodo(objDEl : todo, obj : todo){
@@ -39,7 +50,9 @@ export class TodoCrudService {
   }
 
   deleteTodo(obj : todo){
-    const docPath = '/Todo/' + obj.id;
+    const collection  = '/'+this.todoCollection;
+    const docPath = collection+'/'+ obj.id;
+    console.log('docpath', docPath);
     this.firestore.doc(docPath).delete();
   }
 

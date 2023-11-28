@@ -38,7 +38,20 @@ export class TodayComponent implements OnInit {
         data.id = e.payload.doc.id;
         return data;
       });
+
+      console.log('today', this.Todos);
+
+      for(let to of this.Todos){
+        if(to.name == undefined){
+          //console.log('Todo name', to);
+          this.Todos.splice(this.Todos.indexOf(to), 1);
+          this.todoServ.deleteTodo(to);
+        }
+      }
+
       this.refreshTodos();
+
+      console.log('TodayTodos', this.todayTodos);
     })
   }
 
@@ -54,16 +67,22 @@ export class TodayComponent implements OnInit {
       else 
       {
         this.inboxTodo.push(t);
-        let formattedDate : any = this.datePipe.transform(this.today, 'MMM d');
-        let a = formattedDate.toString();
-        let b = t.date.toString();
-        for(let todo of this.inboxTodo){
-          if(a == b){
-            this.todayTodos.push(todo);
-          }
-        }
       }
     }
+
+     
+        for(let todo of this.inboxTodo){
+        let formattedDate : any = this.datePipe.transform(this.today, 'MMM d');
+        let a = formattedDate.toString();
+        let b = todo.date.toString();
+          if(a == b){
+            console.log('this todo', todo);
+            this.todayTodos.push(todo);
+            console.log('today after push', this.todayTodos);
+          }
+        }
+
+    console.log('inbox', this.inboxTodo);
   }
 
   editTodo(a:any, b:any){

@@ -39,6 +39,15 @@ export class NavbarComponent  implements OnInit {
         return data;
       }); 
 
+      for(let to of this.Todos){
+        if(to.name == undefined){
+          //console.log('Todo name', to);
+          this.todoServ.deleteTodo(to);
+          this.Todos.splice(this.Todos.indexOf(to), 1);
+        }
+      }
+
+
       this.refreshTodos();
     })
   }

@@ -46,10 +46,15 @@ export class InboxComponent implements OnInit {
         const data = e.payload.doc.data();
         data.id = e.payload.doc.id;
         return data;
-      }); 
-
-      //console.log('type of todos', typeof(this.Todos));
-
+      });
+        
+      for(let to of this.Todos){
+        if(to.name == undefined){
+          //console.log('Todo name', to);
+          this.deleteTodo(to);
+          this.Todos.splice(this.Todos.indexOf(to), 1);
+        }
+      }
       this.refreshTodos();
     })
   }
@@ -98,3 +103,7 @@ export class InboxComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 }
+function indexOf(to: any): any {
+  throw new Error('Function not implemented.');
+}
+

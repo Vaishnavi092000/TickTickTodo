@@ -10,7 +10,6 @@ export class AppComponent {
   constructor(private usrCrud : UserCrudService) {}
 
   ngOnInit(){
-    this.usrCrud.getCurrentUser();
   }
 
   
