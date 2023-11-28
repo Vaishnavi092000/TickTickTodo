@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserCrudService } from '../userCrud/user-crud.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class FirebaseAuthenticationService {
 
   constructor(
     public firebaseAuth: AngularFireAuth,
-    private userCrudServ: UserCrudService
+    private userCrudServ: UserCrudService,
+    private router : Router
   ) { }
 
   currentuser: any= {};
@@ -54,6 +56,8 @@ export class FirebaseAuthenticationService {
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('currentUser');
+    localStorage.clear();
+    console.log(localStorage.getItem('currentUser'));
   }
 
   // getUsers() {
@@ -79,10 +83,9 @@ export class FirebaseAuthenticationService {
         //console.log('dta', data);
         if(data.email == email && data.password == pass)
         {
-          //console.log('data', data);
-          this.currentuser = data;
-          //console.log('Current User : ', this.currentuser);
-          localStorage.setItem('currentUser', JSON.stringify(this.currentuser));
+                      this.currentuser = data;
+            localStorage.setItem('currentUser', JSON.stringify(this.currentuser)); 
+                
         }
       })
     })

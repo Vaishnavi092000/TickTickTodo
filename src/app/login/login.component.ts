@@ -8,30 +8,37 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent implements OnInit {
 
   loginUser!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    public fireAuth : FirebaseAuthenticationService,
-    private router : Router
+    private formBuilder: FormBuilder,
+    public fireAuth: FirebaseAuthenticationService,
+    private router: Router
   ) { }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
+    let existingUser = localStorage.getItem('currentUser');
+    if (existingUser != null || existingUser != undefined) {
+      this.router.navigateByUrl('/nav/inbox');
+    }
+
     this.loginUser = this.formBuilder.group(
       {
         userEmail: ['', [Validators.required, Validators.email]],
-        userPass : ['', Validators.required]
+        userPass: ['', Validators.required]
       }
     );
   }
 
-  Login(){
+  Login() {
+
     let user = this.loginUser.value;
-    this.fireAuth.signin(user.userEmail, user.userPass); 
+    this.fireAuth.signin(user.userEmail, user.userPass);
     this.router.navigateByUrl('nav/inbox');
+
+
   }
 
 }

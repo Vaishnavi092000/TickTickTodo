@@ -19,6 +19,11 @@ export class RegisterComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
+    let existingUser = localStorage.getItem('currentUser');
+    if (existingUser != null || existingUser != undefined) {
+      this.router.navigateByUrl('/nav/inbox');
+    }
+    
     this.registerUser = this.formBuilder.group(
       {
         userName: ['', Validators.required],

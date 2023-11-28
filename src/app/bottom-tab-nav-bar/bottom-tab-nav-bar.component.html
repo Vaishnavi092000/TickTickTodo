@@ -2,12 +2,12 @@
 
   <table width="100%">
     <tr>
-      <td><a mat-icon-button [ngClass]="showTask ? 'active' : ''" routerLink="today" (click)="showTasks()">
+      <td><a mat-icon-button [ngClass]="showTask ? 'active' : ''" routerLink="inbox" (click)="showTasks()">
           <mat-icon>check_box</mat-icon>
       </a></td>
 
       <td>
-        <a mat-icon-button [ngClass]="showCalandar ? 'active' : ''" routerLink="calendar" (click)="showCalandars()">
+        <a mat-icon-button [ngClass]="showCalandar ? 'active' : ''" routerLink="today" (click)="showCalandars()">
           <mat-icon>calendar_today</mat-icon>
         </a>
       </td>
