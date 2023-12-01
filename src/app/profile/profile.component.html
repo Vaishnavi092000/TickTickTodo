@@ -7,8 +7,7 @@
         <table width="100%" class="table">
           <tr class="row col-md-12">
             <td width="30%">
-              <img src="../../assets/images/logo.png" alt="">
-              <mat-icon></mat-icon>
+              <img src="../../assets/images/logo.png" alt="" (click)="showOptions()">
             </td>
             <td width="70%">
               <h1 class="blueColor" style="padding: 0 30px;">Hi {{ currentUser.name }}</h1>
@@ -81,5 +80,35 @@
     <div [ngClass]="isLoggedIn ? 'hide' : 'show' " class="txt-center">
       <img src="../../assets/images/Add tasks-pana.svg" width="60%" />
     </div>
+
+
+
+    <!-- bottom sheet -->
+    
+    <div class="bottomSheet" ngClass="{{showDetails ? 'open' : ''}}" #bottomSheet>
+      <div class="show-details-container">
+          <div class="container">
+          <p style="display: flex;padding: 10px 0;
+          line-height: 2.1;"><input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept="image/*" />
+            <mat-icon (click)="openFileInput()" #fileInput> add_a_photo </mat-icon>
+            <span style="margin-left: 5%;">New Profile Picture</span>
+          </p>
+
+          <p style="display: flex;
+          line-height: 2.1;padding: 10px 0;"><input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept="image/*" />
+            <mat-icon (click)="openFileInput()" #fileInput> delete </mat-icon>
+            <span style="margin-left: 5%;">Delete Profile Picture</span>
+          </p>          
+        </div>
+      </div>
+    </div>
+
   </mat-accordion>
+
+
+
+  <div>
+    
+    
+  </div>
 </div>

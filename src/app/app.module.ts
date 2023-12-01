@@ -23,6 +23,9 @@ import { SearchComponent } from './search/search.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { FilterPipe } from './Pipes/filterPipe/filter.pipe';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { LoginComponent } from './login/login.component';
     SearchComponent,
     WelcomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    FilterPipe, 
+    AlertDialogComponent
   ],
   imports: [
     BrowserModule, 
@@ -50,7 +55,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule, ReactiveFormsModule,
     MatExpansionModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    
 ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

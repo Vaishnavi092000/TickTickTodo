@@ -17,8 +17,6 @@ export class TodoCrudService {
 
   currentUser = this.userServ.getCurrentUser();
 
-  
-
   todoCollection = this.currentUser.todoCollection;
 
   createTodo(newtodo:todo){
@@ -39,8 +37,8 @@ export class TodoCrudService {
   }
 
   getAllTodo(){
-    //console.log('currentUser in getAll', this.currentUser);
-    //console.log('todo collection name in getAll', this.todoCollection);
+    console.log('currentUser in getAll', this.currentUser);
+    console.log('todo collection name in getAll', this.todoCollection);
     return this.firestore.collection('/'+this.todoCollection).snapshotChanges();
   }
 
