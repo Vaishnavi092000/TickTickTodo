@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FilterPipe } from './Pipes/filterPipe/filter.pipe';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
     RegisterComponent,
     LoginComponent,
     FilterPipe, 
-    AlertDialogComponent
+    AlertDialogComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule, 

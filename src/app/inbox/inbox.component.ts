@@ -2,6 +2,9 @@ import { Component,ElementRef,HostListener,OnInit, ViewChild, inject } from '@an
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { todo } from '../todo';
 import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
+import * as firebase from '@angular/fire/compat';
+import { FirebaseApp } from '@angular/fire/compat';
+import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
 
 @Component({
   selector: 'app-inbox',
@@ -23,7 +26,10 @@ export class InboxComponent implements OnInit {
     complete: false
   };
 
-  constructor(private todoServ: TodoCrudService, private elementRef: ElementRef) { }
+  constructor(private todoServ: TodoCrudService, 
+    private elementRef: ElementRef,
+    public fireAuth: FirebaseAuthenticationService
+    ) { }
 
   firestore: AngularFirestore = inject(AngularFirestore);
 
@@ -76,7 +82,8 @@ export class InboxComponent implements OnInit {
     this.showDetails = false;
   }
 
-  refreshTodos(){
+  refreshTodos()
+  {
     this.completeTodos = [];
     this.inboxTodo = [];
 
@@ -102,8 +109,7 @@ export class InboxComponent implements OnInit {
     this.currentTodo = obj;
     this.showDetails = !this.showDetails;
   }
+
 }
-function indexOf(to: any): any {
-  throw new Error('Function not implemented.');
-}
+
 

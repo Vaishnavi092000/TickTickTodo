@@ -10,6 +10,11 @@
     background-color: #057ffa !important;
 }
 
+.validationMsg{
+    text-align: left;
+    color: red;
+}
+
 .mat-button {
     background: none !important;
 }
@@ -67,4 +72,9 @@ form {
 
 .mdc-card{
     width: 90%;
+}
+
+button:disabled,
+button[disabled]{
+    opacity: 0.65;
 }

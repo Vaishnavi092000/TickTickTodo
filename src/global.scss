@@ -89,3 +89,8 @@ body {
 .txt-center {
   text-align: center;
 }
+
+.mat-mdc-dialog-container .mdc-dialog__content{
+  display: flex !important;
+  align-items: center !important;
+}

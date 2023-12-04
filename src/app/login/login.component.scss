@@ -68,3 +68,13 @@ form {
 .mdc-card{
     width: 90%;
 }
+
+.validationMsg{
+    text-align: left;
+    color: red;
+}
+
+button:disabled,
+button[disabled]{
+    opacity: 0.65;
+}

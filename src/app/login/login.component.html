@@ -8,14 +8,17 @@
   
           <div class="form-group">
             <input type="text" class="form-control" id="userEmail" formControlName="userEmail"
-              placeholder="Email address" />
+              placeholder="Email address" [(ngModel)]="userEmail" (keyup)="validateUserEmail(userEmail)" />
+              <p class="validationMsg" *ngIf="invaliduserEmail"> {{ invaliduserEmail }} </p>
           </div>
    
           <div class="form-group">
-            <input type="text" class="form-control" id="userPass" formControlName="userPass" placeholder="Password" />
+            <input type="text" class="form-control" id="userPass" formControlName="userPass" 
+            placeholder="Password" [(ngModel)]="userPass" (keyup)="validateUserPass(userPass)"/>
+            <p class="validationMsg" *ngIf="invaliduserPass"> {{ invaliduserPass }} </p>
           </div>
     
-          <button type="button" class="btn addTaskBtn" type="submit">Login</button>
+          <button type="button" class="btn addTaskBtn" type="submit" [disabled]="isActive ? '' : 'disabled'">Login</button>
         </form>
       </div>
     </div>

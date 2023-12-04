@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
 import { Router } from '@angular/router';
+import { ValidateFormsService } from '../Services/formValidations/validate-forms.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,20 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginUser!: FormGroup;
+  
+  userEmail = '';
+  userPass = '';
+
+  invaliduserEmail : String | undefined;
+  invaliduserPass : String | undefined;
+
+  isActive = false;
 
   constructor(
     private formBuilder: FormBuilder,
     public fireAuth: FirebaseAuthenticationService,
-    private router: Router
+    private router: Router,
+    private formValid : ValidateFormsService
   ) {
 
   }
@@ -50,6 +60,27 @@ export class LoginComponent implements OnInit {
     //   // this.router.navigateByUrl('nav/inbox');
     // }, 4000);
 
+  }
+
+  validateUserEmail(userEmail : String){
+    this.invaliduserEmail = this.formValid.validateEmail(userEmail);
+    this.reFreshBtnValid();
+  }
+
+  validateUserPass(userPass : String){
+    this.invaliduserPass = this.formValid.validatePassword(userPass);
+    this.reFreshBtnValid();
+  }
+
+  reFreshBtnValid(){
+    if((this.invaliduserEmail =='') && (this.invaliduserPass ==''))
+    {
+      //console.log('Form is valid');
+      this.isActive = true;
+    }else{
+      this.isActive = false;
+      //console.log('Form is invalid');
+    }
   }
 
 }

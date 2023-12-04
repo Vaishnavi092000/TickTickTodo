@@ -2,38 +2,16 @@
   <mat-toolbar class="p-0" fxLayout="row" fxLayoutAlign="start stretch" style="z-index: 2">
     <table width="100%">
       <tr class="col-md-12">
-        <td class="col-md-2">
-          <button mat-button (click)="drawer.toggle()">
-            <mat-icon>menu</mat-icon>
-          </button>
+        <td width="20%" class="txt-center">
+          <!-- <button mat-button > -->
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+          <!-- </button> -->
         </td>
 
-        <td class="col-md-9">
-          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3 col-md-8">
-            <span>Tick Tick</span>
-          </div>
-        </td>
-
-        <td class="col-md-1 txt-right">
-          <span>
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <mat-icon>dialpad</mat-icon>
-                <span>Redial</span>
-              </button>
-              <button mat-menu-item disabled>
-                <mat-icon>voicemail</mat-icon>
-                <span>Check voice mail</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>notifications_off</mat-icon>
-                <span>Disable alerts</span>
-              </button>
-            </mat-menu>
-          </span>
+        <td width="80%">
+          <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3 col-md-8"> -->
+            <ion-title class="md title-default">Tick Tick</ion-title>
+          <!-- </div> -->
         </td>
       </tr>
     </table>

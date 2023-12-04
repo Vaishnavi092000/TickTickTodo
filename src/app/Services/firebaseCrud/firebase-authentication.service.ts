@@ -1,11 +1,13 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserCrudService } from '../userCrud/user-crud.service';
 import { Router } from '@angular/router';
 import { error } from 'console';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/alert-dialog/alert-dialog.component';
+import * as firebase from 'firebase/compat';
+import { user } from 'src/app/user';
 
 
 @Injectable({
@@ -16,16 +18,18 @@ export class FirebaseAuthenticationService {
   users: any[] = [];
 
   constructor(
-    public firebaseAuth: AngularFireAuth,
+    public firebaseAuth: AngularFireAuth, 
     private userCrudServ: UserCrudService,
     private router: Router,
     private dialog: MatDialog
   ) { }
 
-  currentuser: any = {};
+  currentUser: any = {};
   errorMsg = '';
 
   firestore: AngularFirestore = inject(AngularFirestore);
+
+  
 
   async signin(email: string, password: string) {
     //console.log('inside sign in');
@@ -53,6 +57,7 @@ export class FirebaseAuthenticationService {
 
           throw new Error('Invalid user credentials');
         });
+
     }
     catch (err) {
       //console.log('Error Msg Firebase Auth', err);
@@ -69,38 +74,110 @@ export class FirebaseAuthenticationService {
   }
 
   async signup(email: string, password: string, localU: any) {
-    await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+    try{
+      await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(
         resp => {
-          this.firestore.collection('/Users').add({
-            'id': resp.user?.uid,
-            'name': localU.userName,
-            'email': localU.userEmail,
-            'phone': localU.userPhone,
-            'password': localU.userPass,
-            'isActive': false,
-            'todoCollection': 'Todos' + resp.user?.uid
-          })
-
-          let todoCollectionName = 'Todos' + resp.user?.uid;
-          //todoCollectionName.concat
-          //console.log(todoCollectionName);
-
-          this.firestore.collection('/' + todoCollectionName).add({});
+          try{
+            this.firestore.collection('/Users').add({
+              'id': resp.user?.uid,
+              'name': localU.userName,
+              'email': localU.userEmail,
+              'phone': localU.userPhone,
+              'password': localU.userPass,
+              'isActive': false,
+              'todoCollection': 'Todos' + resp.user?.uid
+            })
+  
+            let todoCollectionName = 'Todos' + resp.user?.uid;
+            //todoCollectionName.concat
+            //console.log(todoCollectionName);
+  
+            this.firestore.collection('/' + todoCollectionName).add({});
+          }catch(e){
+            console.log(e);
+          }
         }
       )
+      .catch(e => {
+        //console.log('inside sigin error');
+
+        this.dialog.open(AlertDialogComponent, {
+          data: {
+            //icon: 'Check',
+            message: 'Unable to register the user'
+          }
+        });
+
+        throw new Error('Unable to register the user');
+      });
+
+    }catch(err){
+      throw new Error('Error Msg Firebase Auth For Register');
+    }
   }
 
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('currentUser');
     localStorage.clear();
-    console.log(localStorage.getItem('currentUser'));
+    //console.log(localStorage.getItem('currentUser'));
 
     setTimeout(
       ()=>{
       this.router.navigateByUrl('/login')
     }, 3000);
+  }
+
+  async updateCurrentUser(newUser : any) : Promise<void>{
+    // this.currentuser = this.userCrudServ.getCurrentUser();
+    // console.log('newUser', newUser);
+    // //console.log('val of newUser', JSON.parse(newUser));
+
+    // // await this.firebaseAuth.updateCurrentUser(newUser)
+    // // .then(()=>{
+    // //   console.log('Updated');
+    // // });
+
+    // this.currentuser.updateCurrentUser(newUser);
+    console.log('inside updateCurrentUser', newUser);
+
+    try{
+      this.currentUser = this.userCrudServ.getCurrentUser();
+      this.currentUser = newUser.password;
+    
+      //console.log('current User in try', currentUser.then());
+      let abc : any = {
+        'email' : "vaishnavigulwelkar922@gmail.com",
+        'id' : "fsMp3jotdRxlQo9yDUIf",
+        'isActive' : false,
+        'name': "Vaishnavi G Gulwelkar",
+        'password' : "Veda@1234",
+        'phone' : "9673085934",
+        'profile': "",
+        'todoCollection': "TodosMyKyVEAg8IcQvamSb3xWz41jFFs1"
+      }
+
+      if (this.currentUser) {
+        console.log('inside if');
+        this.currentUser.updateProfile(
+          this.currentUser.password = 'Abcd@1234'
+        );
+        console.log('after method');
+        // .then((res:any)=>{
+        //   console.log(res);
+        // })
+      }
+
+
+      //   console.log('User display name updated successfully:');
+      // } else {
+      //   console.error('No user is currently signed in.');
+      // }
+
+    }catch(e){
+
+    }
   }
 
   // getUsers() {
@@ -123,14 +200,15 @@ export class FirebaseAuthenticationService {
           const data = e.payload.doc.data();
           data.id = e.payload.doc.id;
           this.users.push(data);
-          console.log('dta', data);
+          //console.log('dta', data);
           if (data.email == email && data.password == pass) {
-            this.currentuser = data;
-            localStorage.setItem('currentUser', JSON.stringify(this.currentuser));
+            this.currentUser = data;
+            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
             console.log('Current user is set into firebase auth', localStorage.getItem('currentUser'));
             this.router.navigateByUrl('nav/inbox');
           }
         })
       })
   }
+
 }
