@@ -29,7 +29,11 @@
           </div>
   
           <div class="form-group">
-            <input type="text" class="form-control" id="userPass" formControlName="userPass" 
+
+            <mat-icon class="passwordIcon" *ngIf="passwordIsVisible" (click)="togglePass()">visibility</mat-icon>
+            <mat-icon class="passwordIcon" *ngIf="!passwordIsVisible" (click)="togglePass()">visibility_off</mat-icon>
+            
+            <input [type]="password" class="form-control" id="userPass" formControlName="userPass" 
             placeholder="Password" [(ngModel)]="userPass" (keyup)="validateUserPass(userPass)" />
 
             <p class="validationMsg" *ngIf="invaliduserPass"> {{ invaliduserPass }} </p>
@@ -37,10 +41,11 @@
           </div>
   
           <div class="form-group">
-            <input type="text" class="form-control" id="userconfPass" formControlName="userconfPass"
+
+            <input type="password" class="form-control" id="userconfPass" formControlName="userconfPass"
               placeholder="Confirm Password" [(ngModel)]="userconfPass" (keyup)="validateUserconfPass(userPass, userconfPass)" />
 
-              <p class="validationMsg" *ngIf="invaliduserconfPass"> {{ invaliduserconfPass }} </p>
+            <p class="validationMsg" *ngIf="invaliduserconfPass"> {{ invaliduserconfPass }} </p>
 
           </div>
   
@@ -48,9 +53,9 @@
         </form>
       </div>
     </div>
-    <div class="txt-center" style="padding: 10px;">
+    <!-- <div class="txt-center" style="padding: 10px;">
       <button class="btn"><img src="../../assets/images/Google logo.png" width="24px" /> Sign up with Google</button>
-    </div>
+    </div> -->
 
     <div class="txt-center" style="padding: 10px;">
       <p>Already have an account? <a [routerLink]="['/login']" class="signupLink">Signin Now</a></p>

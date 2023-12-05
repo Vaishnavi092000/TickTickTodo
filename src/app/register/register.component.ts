@@ -25,7 +25,9 @@ export class RegisterComponent  implements OnInit {
   invaliduserconfPass : String | undefined;
 
   isActive = false;
+  passwordIsVisible = false;
 
+  password = '';
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -50,6 +52,8 @@ export class RegisterComponent  implements OnInit {
         userconfPass : ['', Validators.required]
       },  
     );
+
+    this.password = 'password';
 
     
   }
@@ -101,4 +105,14 @@ export class RegisterComponent  implements OnInit {
     }
   }
   
+  togglePass(){
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.passwordIsVisible = true;
+    } else {
+      this.password = 'password';
+      this.passwordIsVisible = false;
+    }
+  }
+
 }

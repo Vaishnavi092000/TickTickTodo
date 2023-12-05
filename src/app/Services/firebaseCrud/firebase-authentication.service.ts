@@ -90,8 +90,6 @@ export class FirebaseAuthenticationService {
             })
   
             let todoCollectionName = 'Todos' + resp.user?.uid;
-            //todoCollectionName.concat
-            //console.log(todoCollectionName);
   
             this.firestore.collection('/' + todoCollectionName).add({});
           }catch(e){
@@ -143,37 +141,6 @@ export class FirebaseAuthenticationService {
     console.log('inside updateCurrentUser', newUser);
 
     try{
-      this.currentUser = this.userCrudServ.getCurrentUser();
-      this.currentUser = newUser.password;
-    
-      //console.log('current User in try', currentUser.then());
-      let abc : any = {
-        'email' : "vaishnavigulwelkar922@gmail.com",
-        'id' : "fsMp3jotdRxlQo9yDUIf",
-        'isActive' : false,
-        'name': "Vaishnavi G Gulwelkar",
-        'password' : "Veda@1234",
-        'phone' : "9673085934",
-        'profile': "",
-        'todoCollection': "TodosMyKyVEAg8IcQvamSb3xWz41jFFs1"
-      }
-
-      if (this.currentUser) {
-        console.log('inside if');
-        this.currentUser.updateProfile(
-          this.currentUser.password = 'Abcd@1234'
-        );
-        console.log('after method');
-        // .then((res:any)=>{
-        //   console.log(res);
-        // })
-      }
-
-
-      //   console.log('User display name updated successfully:');
-      // } else {
-      //   console.error('No user is currently signed in.');
-      // }
 
     }catch(e){
 

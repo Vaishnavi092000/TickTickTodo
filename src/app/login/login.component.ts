@@ -12,6 +12,8 @@ import { ValidateFormsService } from '../Services/formValidations/validate-forms
 export class LoginComponent implements OnInit {
 
   loginUser!: FormGroup;
+
+  password = '';
   
   userEmail = '';
   userPass = '';
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
   invaliduserPass : String | undefined;
 
   isActive = false;
+  passwordIsVisible = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     let existingUser = localStorage.getItem('currentUser');
     if (existingUser != null || existingUser != undefined) {
       this.router.navigateByUrl('/nav/inbox');
@@ -43,6 +47,8 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+
+    this.password = 'password';
 
   }
 
@@ -80,6 +86,16 @@ export class LoginComponent implements OnInit {
     }else{
       this.isActive = false;
       //console.log('Form is invalid');
+    }
+  }
+
+  togglePass(){
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.passwordIsVisible = true;
+    } else {
+      this.password = 'password';
+      this.passwordIsVisible = false;
     }
   }
 
