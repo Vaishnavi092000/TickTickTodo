@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 //Angular Material Components
@@ -40,6 +40,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -117,6 +118,42 @@ import { MatRippleModule } from '@angular/material/core';
     MatDividerModule
   ],
 })
-export class AppMaterialModule {}
-export { MatIconModule, MatExpansionModule };
+export class AppMaterialModule { }
+export {
+  MatIconModule,
+  MatExpansionModule,
+  BrowserAnimationsModule,
+  CdkTableModule,
+  MatCheckboxModule,
+  MatButtonModule,
+  MatInputModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatGridListModule,
+  MatCardModule,
+  MatStepperModule,
+  MatTabsModule,
+  MatButtonToggleModule,
+  MatChipsModule,
+  MatProgressSpinnerModule,
+  MatProgressBarModule,
+  MatDialogModule,
+  MatTooltipModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatRippleModule,
+  MatBottomSheetModule,
+  MatDividerModule
+};
 
