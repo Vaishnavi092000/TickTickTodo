@@ -71,7 +71,7 @@ h1{
 }
 
 .bottomSheet.open {
-    max-height: 150px;
+    max-height: 180px;
     height: 100%;
     padding: 10px;
     z-index: 99;
@@ -79,4 +79,10 @@ h1{
 
 .show-details-container {
     padding: 10px 0;
+}
+
+.passwordIcon{
+    color: #057ffa !important;
+    position: absolute;
+    right: 2%;
 }

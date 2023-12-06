@@ -5,7 +5,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TodayComponent } from './today/today.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { RegisterComponent } from './register/register.component';
@@ -23,7 +22,6 @@ const routes: Routes = [
       { path: 'today', component: TodayComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'search', component: SearchComponent },
-      { path: 'calendar', component: CalendarComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: 'inbox', component: InboxComponent },
       { path : 'resetPass', component : ResetPasswordComponent }

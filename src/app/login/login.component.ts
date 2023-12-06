@@ -29,9 +29,7 @@ export class LoginComponent implements OnInit {
     public fireAuth: FirebaseAuthenticationService,
     private router: Router,
     private formValid : ValidateFormsService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     

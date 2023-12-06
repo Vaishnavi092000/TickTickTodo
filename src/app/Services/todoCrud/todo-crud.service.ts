@@ -10,10 +10,12 @@ import { UserCrudService } from '../userCrud/user-crud.service';
 
 export class TodoCrudService {
 
-  firestore: AngularFirestore = inject(AngularFirestore);
-  //JSON.parse
+  //firestore: AngularFirestore = inject(AngularFirestore);
 
-  constructor(private userServ : UserCrudService) {}
+  constructor(
+    private userServ : UserCrudService,
+    private firestore : AngularFirestore
+    ) {}
 
   currentUser = this.userServ.getCurrentUser();
 

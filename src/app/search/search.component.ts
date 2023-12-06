@@ -23,8 +23,6 @@ export class SearchComponent  implements OnInit {
     complete: false
   };
 
-
-
   ngOnInit() {
     this.getTodos();
   }

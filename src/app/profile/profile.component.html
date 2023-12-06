@@ -6,8 +6,8 @@
       <mat-card>
         <table width="100%" class="table">
           <tr class="row col-md-12">
-            <td width="30%">
-              <img src="../../assets/images/logo.png" alt="" (click)="showOptions()">
+            <td width="30%" style="padding: 10px;">
+              <img src="{{imgSrc}}" alt="" (click)="showOptions()" style="border-radius: 50%;">
             </td>
             <td width="70%">
               <h1 class="blueColor" style="padding: 0 30px;">Hi {{ currentUser.name }}</h1>
@@ -57,21 +57,16 @@
               <mat-icon>password</mat-icon>
             </td>
             <td width="70%">
-              <p>******
-                <span style="float: right;">
-                  <mat-icon [routerLink]="['/nav/resetPass']">lock_reset</mat-icon>
-                </span>
-              </p>
+              <mat-icon class="passwordIcon" *ngIf="passwordIsVisible" (click)="togglePass()">visibility</mat-icon>
+              <mat-icon class="passwordIcon" *ngIf="!passwordIsVisible" (click)="togglePass()">visibility_off</mat-icon>
+              <input [type]="password" name="" id="" value="{{currentUser.password}}" style="border: 0px;">
             </td>
           </tr>
-
           <tr class="row col-md-12">
             <td colspan="2" class="txt-center">
               <button class="btn logoutBtn" (click)="logout()">Logout</button>
             </td>
           </tr>
-
-
         </table>
       </mat-card>
 
@@ -84,31 +79,29 @@
 
 
     <!-- bottom sheet -->
-    
+
     <div class="bottomSheet" ngClass="{{showDetails ? 'open' : ''}}" #bottomSheet>
       <div class="show-details-container">
-          <div class="container">
-          <p style="display: flex;padding: 10px 0;
-          line-height: 2.1;"><input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept="image/*" />
+        <div class="txt-right">
+          <mat-icon (click)="showDetails = false">expand_more</mat-icon>
+        </div>
+        <div class="container">
+          <p style="display: flex;padding: 10px 0; line-height: 2.1;">
+            <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)"
+              accept="image/*" />
             <mat-icon (click)="openFileInput()" #fileInput> add_a_photo </mat-icon>
             <span style="margin-left: 5%;">New Profile Picture</span>
           </p>
 
           <p style="display: flex;
-          line-height: 2.1;padding: 10px 0;"><input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept="image/*" />
-            <mat-icon (click)="openFileInput()" #fileInput> delete </mat-icon>
+          line-height: 2.1;padding: 10px 0;">
+            <mat-icon (click)="deleteProfile()"> delete </mat-icon>
             <span style="margin-left: 5%;">Delete Profile Picture</span>
-          </p>          
+          </p>
         </div>
       </div>
     </div>
-
   </mat-accordion>
-
-
-
   <div>
-    
-    
   </div>
 </div>

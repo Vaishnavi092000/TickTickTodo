@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Observable, finalize } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 @Injectable({

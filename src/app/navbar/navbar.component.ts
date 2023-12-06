@@ -1,6 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
 import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
@@ -24,8 +23,6 @@ export class NavbarComponent  implements OnInit {
     private todoServ: TodoCrudService,
     private datePipe: DatePipe
   ) { }
-
-  firestore: AngularFirestore = inject(AngularFirestore);
 
   ngOnInit() {
     this.getTodo();

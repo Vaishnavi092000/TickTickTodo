@@ -7,7 +7,7 @@ import { UserCrudService } from '../Services/userCrud/user-crud.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss'],
+  styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent  implements OnInit {
 
@@ -31,7 +31,8 @@ export class ResetPasswordComponent  implements OnInit {
   isActive = false;
 
   ngOnInit() {
-    this.resetUserPass = this.formBuilder.group(
+    this.resetUserPass = this.formBuilder.group
+    (
       {
         userPass: ['', Validators.required],
         newUserPass: ['', Validators.required],

@@ -1,9 +1,6 @@
 import { Component,ElementRef,HostListener,OnInit, ViewChild, inject } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { todo } from '../todo';
 import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
-import * as firebase from '@angular/fire/compat';
-import { FirebaseApp } from '@angular/fire/compat';
 import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
 
 @Component({
@@ -28,10 +25,9 @@ export class InboxComponent implements OnInit {
 
   constructor(private todoServ: TodoCrudService, 
     private elementRef: ElementRef,
-    public fireAuth: FirebaseAuthenticationService
+    public fireAuth: FirebaseAuthenticationService,
+    //private firestore: AngularFirestore
     ) { }
-
-  firestore: AngularFirestore = inject(AngularFirestore);
 
   @ViewChild('bottomSheet') bottomSheet : ElementRef | undefined;
 

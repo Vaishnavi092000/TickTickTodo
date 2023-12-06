@@ -9,16 +9,20 @@ import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
-  providers : [DatePipe]
+  providers : [DatePipe, AngularFirestore]
 })
+
 export class AddTaskComponent  implements OnInit {
 
-  constructor(private elementRef: ElementRef, private todoServ :TodoCrudService, private datePipe: DatePipe) {}
+  constructor(
+    private elementRef: ElementRef, 
+    private todoServ :TodoCrudService, 
+    private datePipe: DatePipe,
+    private firestore : AngularFirestore
+  ) {}
 
   today = new Date();
   showForm = false;
-
-  firestore: AngularFirestore = inject(AngularFirestore);
   
   @ViewChild('bottomSheet') bottomSheet : ElementRef | undefined;
   @ViewChild('AddTask') AddTask : ElementRef | undefined;
