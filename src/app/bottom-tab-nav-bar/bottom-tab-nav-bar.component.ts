@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
-import { MatIcon } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-bottom-tab-nav-bar',
   templateUrl: './bottom-tab-nav-bar.component.html',
   styleUrls: ['./bottom-tab-nav-bar.component.scss'],
+  providers : [MatToolbar, MatIcon, MatIconModule]
 })
 export class BottomTabNavBarComponent  implements OnInit {
 

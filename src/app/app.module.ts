@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -10,11 +10,11 @@ import { BottomTabNavBarComponent } from './bottom-tab-nav-bar/bottom-tab-nav-ba
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TodayComponent } from './today/today.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppMaterialModule, MatIconModule } from './app-material.module';
+import { AppMaterialModule } from './app-material.module';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 import { CommonModule, DatePipe } from '@angular/common';
 import { InboxComponent } from './inbox/inbox.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -33,10 +33,12 @@ import { TodoCrudService } from './Services/todoCrud/todo-crud.service';
 import { UserCrudService } from './Services/userCrud/user-crud.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     SplashScreenComponent,
@@ -68,9 +70,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     RouterModule,
     MatIconModule,
     MatDialogModule,
-    MatToolbarModule, 
-       
-],
+    MatToolbarModule
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FirebaseAuthenticationService, 
     ErrorHandlerService, 
@@ -80,7 +81,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     UserCrudService, 
     AngularFireAuth,
     AngularFirestore,
-    DatePipe
+    DatePipe,
+    MatIcon,
+    MatToolbar, 
+    MatExpansionPanel
   ],
   bootstrap: [AppComponent],
 })
