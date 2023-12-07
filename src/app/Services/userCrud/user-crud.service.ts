@@ -40,23 +40,23 @@ export class UserCrudService {
     } 
   }
 
-  editCurrentUser(obj : user){
-    this.currentUser = localStorage.getItem('currentUser');
-    this.deleteCurrentUser(this.currentUser);
+  editCurrentUser(currentU : user , obj : user){
+    //console.log('currentU', currentU);
+    this.deleteCurrentUser(currentU);
     this.createUser(obj);
   }
 
-  deleteCurrentUser(obj : user){
-    this.currentUser = localStorage.getItem('currentUser');
+  deleteCurrentUser(obj : any){
+    //console.log('delete id', obj.id, obj.uid);
     const docPath = '/Users/'+ obj.id;
     //console.log('docpath', docPath);
     this.firestore.doc(docPath).delete();
   }
 
   createUser(user:any){
-    console.log('Creating new user', user);
+    //console.log('Creating new user', user);
     this.firestore.collection('/Users').add(user);
-    let todoCollectionName = 'Todos' + user.todoCollection;
+    let todoCollectionName = user.todoCollection;
     this.firestore.collection('/' + todoCollectionName).add({});
   }
 }

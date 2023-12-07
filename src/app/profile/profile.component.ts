@@ -10,30 +10,30 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  providers : [FirebaseAuthenticationService, FileuploadService, 
+  providers: [FirebaseAuthenticationService, FileuploadService,
     AngularFireAuth],
 })
-export class ProfileComponent  implements OnInit {
+export class ProfileComponent implements OnInit {
 
   constructor(
-    private usrCrud : UserCrudService, 
-    private firAuth : FirebaseAuthenticationService,
-    private uploadServ : FileuploadService,
-    private router : Router,
+    private usrCrud: UserCrudService,
+    private firAuth: FirebaseAuthenticationService,
+    private uploadServ: FileuploadService,
+    private router: Router,
     private elementRef: ElementRef,
   ) { }
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   currentUser: any = {};
-  isLoggedIn : boolean = false;
+  isLoggedIn: boolean = false;
   userProfilePic = '';
-  showDetails : boolean = false;
+  showDetails: boolean = false;
   password = '';
   passwordIsVisible = false;
   imgSrc = '';
 
-  @ViewChild('bottomSheet') bottomSheet : ElementRef | undefined;
+  @ViewChild('bottomSheet') bottomSheet: ElementRef | undefined;
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event): void {
@@ -46,31 +46,29 @@ export class ProfileComponent  implements OnInit {
     this.currentUser = this.usrCrud.getCurrentUser();
     //console.log('current user in profile', this.currentUser);
 
-    if(Object.keys(this.currentUser).length != 0)
-    {
+    if (Object.keys(this.currentUser).length != 0) {
       this.isLoggedIn = true;
     }
 
-    if(this.currentUser.profile){
+    if (this.currentUser.profile) {
       this.imgSrc = this.currentUser.profile;
-    }else{
+    } else {
       this.imgSrc = '../../assets/images/profile.png';
     }
 
-    this.password = 'password';    
+    this.password = 'password';
   }
 
-  logout(){
+  logout() {
     //console.log('Inside logout');
     this.firAuth.logout();
   }
 
-  showOptions(){
+  showOptions() {
     this.showDetails = !this.showDetails;
   }
 
-  onFileSelected(event: any): void 
-  {
+  onFileSelected(event: any): void {
     const fileInput = event.target;
     if (fileInput.files && fileInput.files.length > 0) {
       const selectedFile = fileInput.files[0];
@@ -78,38 +76,40 @@ export class ProfileComponent  implements OnInit {
       // You can handle the selected file here (e.g., upload it to a server)
       const path = `UserProfiles/${selectedFile}`;
       let t = this.uploadServ.uploadFile(selectedFile, path);
-      console.log('t', t);
+      //console.log('t', t);
 
-      t.subscribe((obs)=>{
-        console.log('obs', obs);
+      t.subscribe((obs) => {
+        //console.log('obs', obs);
         this.imgSrc = obs;
       });
 
 
       // this.imgSrc = this.uploadServ.getFileUrl();
-      console.log('imgsrc', this.imgSrc);
-      console.log('currentUser', this.currentUser);
 
-      setTimeout(()=>{
+
+      setTimeout(() => {
+        //console.log('imgsrc', this.imgSrc);
+        //console.log('currentUser', this.currentUser);
+
         let user = {
-          id : this.currentUser.uid,
-          name : this.currentUser.name,
-          email : this.currentUser.email,
-          isActive : this.currentUser.isActive,
-          phone : this.currentUser.phone,
-          todoCollection : this.currentUser.todoCollection,
-          password : this.currentUser.password, 
-          profile : this.imgSrc
+          uid: this.currentUser.uid,
+          name: this.currentUser.name,
+          email: this.currentUser.email,
+          isActive: this.currentUser.isActive,
+          phone: this.currentUser.phone,
+          todoCollection: this.currentUser.todoCollection,
+          password: this.currentUser.password,
+          profile: this.imgSrc
         }
 
         console.log('user', user);
-  
-        this.usrCrud.editCurrentUser(user);
+
+        this.usrCrud.editCurrentUser(this.currentUser, user);
         localStorage.removeItem('currentUser');
         localStorage.clear();
         localStorage.setItem('currentUser', JSON.stringify(user));
-        console.log('Get Current User In Profile', this.currentUser);
-      }, 2500);
+        //console.log('Get Current User In Profile', this.currentUser);
+      }, 3000);
 
     }
   }
@@ -119,8 +119,7 @@ export class ProfileComponent  implements OnInit {
     this.fileInput.nativeElement.click();
   }
 
-  togglePass()
-  {
+  togglePass() {
     if (this.password === 'password') {
       this.password = 'text';
       this.passwordIsVisible = true;
@@ -130,7 +129,25 @@ export class ProfileComponent  implements OnInit {
     }
   }
 
-  deleteProfile(){}
+  deleteProfile() {
+    let user = {
+      uid: this.currentUser.uid,
+      name: this.currentUser.name,
+      email: this.currentUser.email,
+      isActive: this.currentUser.isActive,
+      phone: this.currentUser.phone,
+      todoCollection: this.currentUser.todoCollection,
+      password: this.currentUser.password,
+      profile: ''
+    }
+
+    this.usrCrud.editCurrentUser(this.currentUser, user);
+
+    localStorage.removeItem('currentUser');
+    localStorage.clear();
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
+  }
 
 }
 
