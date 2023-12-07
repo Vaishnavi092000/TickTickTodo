@@ -14,7 +14,7 @@ import { AppMaterialModule } from './app-material.module';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 import { CommonModule, DatePipe } from '@angular/common';
 import { InboxComponent } from './inbox/inbox.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -31,7 +31,7 @@ import { FileuploadService } from './Services/fileUpload/fileupload.service';
 import { ValidateFormsService } from './Services/formValidations/validate-forms.service';
 import { TodoCrudService } from './Services/todoCrud/todo-crud.service';
 import { UserCrudService } from './Services/userCrud/user-crud.service';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
@@ -59,6 +59,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     BrowserModule, 
+    AngularFireAuthModule,
     AppMaterialModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
@@ -72,19 +73,17 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatToolbarModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    FirebaseAuthenticationService, 
-    ErrorHandlerService, 
-    FileuploadService, 
-    ValidateFormsService, 
-    TodoCrudService, 
-    UserCrudService, 
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFireAuth,
     AngularFirestore,
     DatePipe,
     MatIcon,
     MatToolbar, 
-    MatExpansionPanel
+    MatExpansionPanel,
+    MatDialogModule,
+    ErrorHandlerService, FileuploadService, FirebaseAuthenticationService, ValidateFormsService,
+    TodoCrudService, UserCrudService  
   ],
   bootstrap: [AppComponent],
 })

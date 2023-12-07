@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
 import { Router } from '@angular/router';
 import { ValidateFormsService } from '../Services/formValidations/validate-forms.service';
+//import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  providers : [FirebaseAuthenticationService, ValidateFormsService]
 })
 export class RegisterComponent  implements OnInit {
 
@@ -54,8 +56,7 @@ export class RegisterComponent  implements OnInit {
     );
 
     this.password = 'password';
-
-    
+   
   }
 
   Register()
@@ -63,10 +64,11 @@ export class RegisterComponent  implements OnInit {
     let user = this.registerUser.value;
     try{
       this.fireAuth.signup(user.userEmail, user.userPass, user);
+      this.router.navigateByUrl('/login');
+
     }catch(e){
       console.log('Register Error');
     }
-    //this.router.navigateByUrl('/login');
   }
 
   validateUserName(userName : String){

@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidateFormsService } from '../Services/formValidations/validate-forms.service';
 import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
 import { UserCrudService } from '../Services/userCrud/user-crud.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  styleUrls: ['./reset-password.component.scss'],
+  providers : [ValidateFormsService, FirebaseAuthenticationService, UserCrudService, AngularFireAuth]
 })
 export class ResetPasswordComponent  implements OnInit {
 

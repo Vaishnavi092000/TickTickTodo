@@ -8,6 +8,7 @@ import { ValidateFormsService } from '../Services/formValidations/validate-forms
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  providers : [FirebaseAuthenticationService, ValidateFormsService]
 })
 export class LoginComponent implements OnInit {
 
@@ -52,6 +53,7 @@ export class LoginComponent implements OnInit {
 
   Login() {
 
+    console.log('inside login');
     let user = this.loginUser.value;
     try {
       this.fireAuth.signin(user.userEmail, user.userPass);

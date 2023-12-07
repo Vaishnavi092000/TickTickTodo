@@ -10,6 +10,7 @@ import { AlertDialogComponent } from 'src/app/alert-dialog/alert-dialog.componen
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirebaseAuthenticationService {
 
   users: any[] = [];
@@ -27,21 +28,21 @@ export class FirebaseAuthenticationService {
   firestore: AngularFirestore = inject(AngularFirestore);
 
   async signin(email: string, password: string) {
-    //console.log('inside sign in');
+    console.log('inside sign in', password);
     try {
       await this.firebaseAuth.signInWithEmailAndPassword(email, password)
         .then(
           resp => {
             try {
               this.getUser(email, password);
-              //this.router.navigateByUrl('nav/inbox');
+              this.router.navigateByUrl('nav/inbox');
             } catch (e) {
               console.log(e);
             }
           }
         )
         .catch(e => {
-          //console.log('inside sigin error');
+          console.log('inside sigin error');
 
           this.dialog.open(AlertDialogComponent, {
             data: {
@@ -75,7 +76,7 @@ export class FirebaseAuthenticationService {
           resp => {
             try {
               this.firestore.collection('/Users').add({
-                'id': resp.user?.uid,
+                'uid': resp.user?.uid,
                 'name': localU.userName,
                 'email': localU.userEmail,
                 'phone': localU.userPhone,
@@ -85,7 +86,7 @@ export class FirebaseAuthenticationService {
               })
 
               let todoCollectionName = 'Todos' + resp.user?.uid;
-
+              console.log('todoCollectionName : ', todoCollectionName);
               this.firestore.collection('/' + todoCollectionName).add({});
             } catch (e) {
               console.log(e);
@@ -155,24 +156,27 @@ export class FirebaseAuthenticationService {
 
   getUser(email: string, pass: string) 
   {
-    console.log('inside getUser');
+    console.log('inside getUser', pass);
 
     this.userCrudServ.getAllUsers().subscribe
       (res => 
-      {
-        res.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          this.users.push(data);
-          //console.log('dta', data);
-          if (data.email == email && data.password == pass) {
-            this.currentUser = data;
-            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-            console.log('Current user is set into firebase auth', localStorage.getItem('currentUser'));
-            this.router.navigateByUrl('nav/inbox');
-          }
-        })
-      })
+        {
+          res.map((e: any) => 
+          {
+            const data = e.payload.doc.data();
+            data.id = e.payload.doc.id;
+            this.users.push(data);
+            //console.log('dta', data);
+            if (data.email == email && data.password == pass) 
+            {
+              this.currentUser = data;
+              localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+              console.log('Current user is set into firebase auth', localStorage.getItem('currentUser'));
+              this.router.navigateByUrl('nav/inbox');
+            }
+          })
+        }
+      );
   }
 
 }

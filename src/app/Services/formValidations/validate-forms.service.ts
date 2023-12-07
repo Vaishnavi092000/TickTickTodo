@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { user } from 'src/app/user';
 import { UserCrudService } from '../userCrud/user-crud.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ import { UserCrudService } from '../userCrud/user-crud.service';
 export class ValidateFormsService {
 
   constructor(
-    private usrCrud : UserCrudService
+    private usrCrud : UserCrudService,
+    private firebaseAuth: AngularFireAuth,
+
   ) { }
 
   ngOnInit(){}

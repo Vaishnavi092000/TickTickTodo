@@ -7,6 +7,7 @@ import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
   selector: 'app-today',
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.scss'],
+  providers : [TodoCrudService]
 })
 export class TodayComponent implements OnInit {
 

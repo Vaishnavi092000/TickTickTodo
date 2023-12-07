@@ -1,12 +1,17 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService extends ErrorHandler {
-  constructor(private dialog: MatDialog, private ngZone: NgZone) {
+  constructor(
+    private dialog: MatDialog, 
+    private ngZone: NgZone,
+    private firebaseAuth: AngularFireAuth,
+  ) {
     super();
   }
 

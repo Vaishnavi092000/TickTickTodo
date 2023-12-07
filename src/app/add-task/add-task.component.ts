@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { todo } from '../todo';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+//import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
 import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 
@@ -9,7 +9,9 @@ import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
-  providers : [DatePipe, AngularFirestore]
+  providers : [DatePipe, 
+    //AngularFirestore, 
+    TodoCrudService]
 })
 
 export class AddTaskComponent  implements OnInit {
@@ -18,7 +20,7 @@ export class AddTaskComponent  implements OnInit {
     private elementRef: ElementRef, 
     private todoServ :TodoCrudService, 
     private datePipe: DatePipe,
-    private firestore : AngularFirestore
+    //private firestore : AngularFirestore
   ) {}
 
   today = new Date();

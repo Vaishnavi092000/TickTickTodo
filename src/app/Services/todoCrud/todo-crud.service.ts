@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { todo } from 'src/app/todo';
 import { UserCrudService } from '../userCrud/user-crud.service';
+//import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Injectable({
@@ -14,12 +15,16 @@ export class TodoCrudService {
 
   constructor(
     private userServ : UserCrudService,
-    private firestore : AngularFirestore
-    ) {}
+    private firestore : AngularFirestore,
+    //private firebaseAuth: AngularFireAuth,
+  ) { }
 
   currentUser = this.userServ.getCurrentUser();
 
   todoCollection = this.currentUser.todoCollection;
+
+  ngOnInit(){
+  }
 
   createTodo(newtodo:todo){
     //console.log('inside create');

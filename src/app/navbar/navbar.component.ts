@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
 import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
+//import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  providers : [DatePipe]
+  providers : [DatePipe, TodoCrudService]
 })
 export class NavbarComponent  implements OnInit {
 

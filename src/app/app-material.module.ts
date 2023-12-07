@@ -116,44 +116,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatRippleModule,
     MatBottomSheetModule,
     MatDividerModule
-  ],
+  ]
 })
 export class AppMaterialModule { }
-export {
-  MatIconModule,
-  MatExpansionModule,
-  BrowserAnimationsModule,
-  CdkTableModule,
-  MatCheckboxModule,
-  MatButtonModule,
-  MatInputModule,
-  MatAutocompleteModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatGridListModule,
-  MatCardModule,
-  MatStepperModule,
-  MatTabsModule,
-  MatButtonToggleModule,
-  MatChipsModule,
-  MatProgressSpinnerModule,
-  MatProgressBarModule,
-  MatDialogModule,
-  MatTooltipModule,
-  MatSnackBarModule,
-  MatTableModule,
-  MatSortModule,
-  MatPaginatorModule,
-  MatRippleModule,
-  MatBottomSheetModule,
-  MatDividerModule
-};
+
 

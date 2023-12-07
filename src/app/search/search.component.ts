@@ -7,6 +7,7 @@ import { todo } from '../todo';
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  providers : [TodoCrudService]
 })
 export class SearchComponent  implements OnInit {
 

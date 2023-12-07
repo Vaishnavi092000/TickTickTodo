@@ -6,6 +6,7 @@ import { UserCrudService } from '../Services/userCrud/user-crud.service';
   selector: 'app-splash-screen',
   templateUrl: './splash-screen.component.html',
   styleUrls: ['./splash-screen.component.scss'],
+  providers : [UserCrudService]
 })
 export class SplashScreenComponent  implements OnInit {
 

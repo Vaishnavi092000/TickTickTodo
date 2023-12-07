@@ -3,6 +3,6 @@ export interface user{
     name : String,
     email : String,
     phone : String,
-    todocollection : String
+    todoCollection : String
     password : String
 }

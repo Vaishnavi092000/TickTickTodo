@@ -2,11 +2,13 @@ import { Component,ElementRef,HostListener,OnInit, ViewChild } from '@angular/co
 import { todo } from '../todo';
 import { TodoCrudService } from '../Services/todoCrud/todo-crud.service';
 import { FirebaseAuthenticationService } from '../Services/firebaseCrud/firebase-authentication.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.scss'],
+  providers : [TodoCrudService, FirebaseAuthenticationService, AngularFireAuth]
 })
 export class InboxComponent implements OnInit {
 
@@ -43,20 +45,21 @@ export class InboxComponent implements OnInit {
   }
 
   getTodo(){
-    this.todoServ.getAllTodo().subscribe(res=>{
-      this.Todos = res.map((e:any)=>{
-        const data = e.payload.doc.data();
-        data.id = e.payload.doc.id;
-        return data;
-      });
+    this.todoServ.getAllTodo().subscribe(res=>
+      {
+        this.Todos = res.map((e:any)=>{
+          const data = e.payload.doc.data();
+          data.id = e.payload.doc.id;
+          return data;
+        });
         
-      for(let to of this.Todos){
-        if(to.name == undefined){
-          //console.log('Todo name', to);
-          this.deleteTodo(to);
-          this.Todos.splice(this.Todos.indexOf(to), 1);
-        }
-      }
+      // for(let to of this.Todos){
+      //   if(to.name == undefined){
+      //     //console.log('Todo name', to);
+      //     this.deleteTodo(to);
+      //     this.Todos.splice(this.Todos.indexOf(to), 1);
+      //   }
+      // }
       this.refreshTodos();
     })
   }
